@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import "./form.css"
 
-function Form() {
+const Form = ({onFormSubmit}) =>{
     const [cardHolderName, setCardHolderName] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [expMonth, setExpMonth] = useState('');
     const [expYear, setExpYear] = useState('');
     const [cvv, setCVV] = useState('');
     const [error, setError] = useState(false);
-    const [submittedData, setSubmittedData] = useState(null);
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,20 +19,20 @@ function Form() {
             cvv.length === 0
         ) {
             setError(true);
-            setSubmittedData(null);
+            onFormSubmit(null);
         } else {
             setError(false);
-            setSubmittedData({
+            onFormSubmit({
                 cardHolderName,
                 cardNumber,
                 expMonth,
                 expYear,
                 cvv,
-            })
+            });
         }
     }
 
-    return (
+    return(
         <>
             <form onSubmit={handleSubmit}>
                 <div className='boxes'>
@@ -77,17 +75,8 @@ function Form() {
                 </div>
 
             </form>
-
-            {/* {submittedData && (
-                <div className="submitted-data">
-                    <p>{submittedData.cardHolderName}</p>
-                    <p>{submittedData.cardNumber}</p>
-                    <p>{submittedData.expMonth}/{submittedData.expYear}</p>
-                    <p>{submittedData.cvv}</p>
-                </div>
-            )} */}
         </>
-    )
+    );
 }
 
 export default Form;
