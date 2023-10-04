@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Form from './Form'
 import Card1 from './Card1'
@@ -16,13 +18,17 @@ function App() {
 
   const handleFormSubmit = (newCardDetails) => {
     setCardDetails(newCardDetails);
+
+    toast.success('Success', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   return (
     <div className="App ">
       <div className='left-div split'></div>
       <div className='right-div split'>
-        <Form onFormSubmit={handleFormSubmit}/>
+        <Form onFormSubmit={handleFormSubmit} />
       </div>
       <div className='card1 card '>
         <div className='card1-logo'>
@@ -30,15 +36,15 @@ function App() {
           <div className='img2'></div>
         </div>
         <Card1 {...cardDetails} />
-
-
       </div>
+
       <div className='card2 card'>
         <div className='black-line'></div>
         <div className='cvv-div2'>
-          <Card2 {...cardDetails}/>
+          <Card2 {...cardDetails} />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

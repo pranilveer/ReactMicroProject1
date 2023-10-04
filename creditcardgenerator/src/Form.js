@@ -19,7 +19,6 @@ const Form = ({onFormSubmit}) =>{
             cvv.length === 0
         ) {
             setError(true);
-            onFormSubmit(null);
         } else {
             setError(false);
             onFormSubmit({
